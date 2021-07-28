@@ -1,59 +1,21 @@
-import kulka
+from Robot import robot
 import pygame
 import time
 import math
-
+import textprint
 
 # Define some colors.
-BLACK = pygame.Color('black')
 WHITE = pygame.Color('white')
-class TextPrint(object):
-    def __init__(self):
-        self.reset()
-        self.font = pygame.font.Font(None, 20)
-
-    def tprint(self, screen, textString):
-        textBitmap = self.font.render(textString, True, BLACK)
-        screen.blit(textBitmap, (self.x, self.y))
-        self.y += self.line_height
-
-    def reset(self):
-        self.x = 10
-        self.y = 10
-        self.line_height = 15
-
-    def indent(self):
-        self.x += 10
-
-    def unindent(self):
-        self.x -= 10
-
-class robot:
-    def __init__(self, MAC):
-        self.speed = int
-        self.direction = int
-        self.conn = kulka.Kulka(MAC)
-    
-    def roll(self):
-        self.conn.roll(self.speed, self.direction)
-
-    def update(self, speed, direction):
-        self.speed = speed
-        self.direction = direction
-    
-    def set_rgb(self, red, green, blue):
-        self.conn.set_rgb(red, green, blue)
 
 MACAdress = ["1c:52:16:25:82:27", "1c:52:16:25:82:27"] #loop related variables
 Robot = []
 done = False
-
 pygame.init() #pygame related variables
 screen = pygame.display.set_mode((500, 700))
 pygame.display.set_caption("Joystick")
 clock = pygame.time.Clock()
 pygame.joystick.init()
-textPrint = TextPrint()
+textPrint = textprint.TextPrint()
 
 for i in MACAdress:
     Robot.append(robot(i))
